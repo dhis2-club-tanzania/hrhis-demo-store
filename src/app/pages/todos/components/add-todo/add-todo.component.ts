@@ -15,13 +15,16 @@ export class AddTodoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any
   ) {}
 
-  todoAddForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    status: new FormControl(''),
-  });
+  todoAddForm!: FormGroup;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.todoAddForm = new FormGroup({
+      id: new FormControl(this.data?.todo?.id || new Date().valueOf()),
+      title: new FormControl(this.data?.todo?.title || ''),
+      description: new FormControl(this.data?.todo?.description || ''),
+      status: new FormControl(''),
+    });
+  }
 
   onSaveFormData(event: Event) {
     event.stopPropagation();

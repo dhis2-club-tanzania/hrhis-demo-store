@@ -1,6 +1,6 @@
 <div style="width: 450px">
-  <h2 mat-dialog-title>User Form</h2>
-  <mat-dialog-content class="mat-typography">
+  <h2 mat-dialog-title>Todo Form</h2>
+  <mat-dialog-content class="mat-typography" *ngIf="todoAddForm">
     <form [formGroup]="todoAddForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Title</label>

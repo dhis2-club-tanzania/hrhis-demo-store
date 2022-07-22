@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AddFormComponent } from 'src/app/shared/components/add-form/add-form.component';
-import { User } from '../comment/models/user.model';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 
 @Component({
@@ -11,6 +8,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
+  todos: any[] = [{ id: 1, title: 'Test', description: 'This is test todo' }];
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
@@ -20,18 +18,37 @@ export class TodosComponent implements OnInit {
 
     const createTodoDialog = this.dialog.open(AddTodoComponent, {
       disableClose: true,
-      data: {
-        name: new FormGroup({
-          name: new FormControl(''),
-          username: new FormControl(''),
-        }),
-      },
     });
 
     createTodoDialog.afterClosed().subscribe((response) => {
       if (response?.payload) {
-        console.log(response?.payload);
-        // this.users = _.uniqBy([...payload.userResponse, ...this.users], 'id');
+        console.log(response.payload);
+        this.todos = [...this.todos, response.payload];
+      }
+    });
+  }
+
+  onEditTodo(todo: any) {
+    const editTodoDialog = this.dialog.open(AddTodoComponent, {
+      disableClose: true,
+      data: { todo },
+    });
+
+    editTodoDialog.afterClosed().subscribe((response) => {
+      console.log(response);
+
+      if (response?.payload) {
+        const availableTodoIndex = this.todos.indexOf(
+          this.todos.find((todo) => todo.id === response.payload.id)
+        );
+
+        if (availableTodoIndex !== -1) {
+          this.todos = [
+            ...this.todos.slice(0, availableTodoIndex),
+            response.payload,
+            ...this.todos.slice(availableTodoIndex + 1),
+          ];
+        }
       }
     });
   }
