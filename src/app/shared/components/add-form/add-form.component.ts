@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { random } from 'lodash';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user.model';
-import { UserService } from '../../services/user.service';
+import { User } from '../../../pages/comment/models/user.model';
+import { UserService } from '../../../pages/comment/services/user.service';
 
 @Component({
   selector: 'app-add-form',
