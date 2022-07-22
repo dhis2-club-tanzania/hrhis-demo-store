@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../models/user.model';
-import { AddFormComponent } from '../add-form/add-form.component';
+import { AddFormComponent } from '../../../../shared/components/add-form/add-form.component';
 import * as _ from 'lodash';
 import { EditFormComponent } from '../edit-form/edit-form.component';
 import { DeleteComponent } from '../delete/delete.component';
@@ -16,9 +16,9 @@ export class TableComponent implements OnInit {
   editUserDialog!: MatDialogRef<EditFormComponent>;
   deleteUserDialog!: MatDialogRef<DeleteComponent>;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   onCreateUser() {
     this.createUserDialog = this.dialog.open(AddFormComponent, {
@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
       .afterClosed()
       .subscribe((payload: { userResponse: User[] }) => {
         if (payload && payload.userResponse && this.users) {
-          this.users = _.uniqBy([...payload.userResponse, ...this.users], 'id');
+          // this.users = _.uniqBy([...payload.userResponse, ...this.users], 'id');
         }
       });
   }
@@ -61,5 +61,5 @@ export class TableComponent implements OnInit {
       });
   }
 
-  onViewMoreUserDetails() { }
+  onViewMoreUserDetails() {}
 }
