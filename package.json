@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "rm -rf dist && ng build && cp ./src/manifest.webapp ./dist/demo-hrhis/manifest.webapp  && cd dist/demo-hrhis && zip -r demo.zip .",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

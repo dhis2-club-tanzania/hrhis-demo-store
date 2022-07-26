@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0-alpha.1",
+  "name": "Demo",
+  "description": "Oyaaa demo hii!!",
+  "appId": "demo",
+  "appType": "APP",
+  "sortOrder": 13,
+  "showInMenu": true,
+  "launch_path": "index.html",
+  "icons": {
+    "16": "assets/icons/icon-16x16.png",
+    "48": "assets/icons/icon-48x48.png",
+    "128": "assets/icons/icon-128x128.png"
+  },
+  "developer": {
+    "name": "UDSM",
+    "url": ""
+  },
+  "default_locale": "en",
+  "activities": {
+    "dhis": {
+      "href": "../../../"
+    }
+  },
+  "authorities": [
+    "DATAENTRY_APP_VIEW",
+    "RECORD_CREATE",
+    "RECORD_VIEW",
+    "RECORD_UPDATE",
+    "RECORD_DELETE",
+    "RECORD_TRANSFER",
+    "RECORD_CHANGE_FORM"
+  ],
+  "menus": [
+    {
+      "name": "Todos",
+      "path": "todos",
+      "authorities": [],
+      "menus": []
+    },
+    {
+      "name": "Comments",
+      "path": "comments",
+      "authorities": [],
+      "menus": []
+    }
+  ]
+}
